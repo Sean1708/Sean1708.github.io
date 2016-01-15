@@ -1,0 +1,28 @@
+name: "Sean1708"
+permalink: /:year/:month/:day/:title.html
+nav:
+  - name: "github"
+    href: "https://github.com/Sean1708"
+  - name: "about"
+    href: "/about"
+sass:
+  style: :compressed
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  -
+    scope:
+      path: ""
+      type: "drafts"
+    values:
+      layout: "post"
