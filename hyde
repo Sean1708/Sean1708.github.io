@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+from __future__ import print_function, unicode_literals
+
+import argparse
+import os 
+import subprocess
+import sys
+
+from datetime import date
+
+def edit(path):
+    # type: (str,) -> int
+    """Edit the given file in the system editor."""
+    editor = os.getenv("EDITOR", "vim")
+    return subprocess.call([editor, path])
+
+
+def draft(args):
+    # type: (str,) -> None
+    """create a new draft or edit one if it already exists"""
+    path = os.path.join("_drafts", args.title + ".md")
+    sys.exit(edit(path))
+
+def post(args):
+    # type: (str,) -> None
+    """publish a draft if it exists or create a new post"""
+    draft = os.path.join("_drafts", args.title + ".md")
+    post = os.path.join("_posts", "{:%Y-%m-%d}-{}.md".format(date.today(), args.title))
+    if os.path.isfile(draft):
+        os.rename(draft, post)
+    else:
+        sys.exit(edit(post))
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers()
+
+    for cmd in (draft, post):
+        subparser = subparsers.add_parser(cmd.__name__, help=cmd.__doc__)
+        subparser.add_argument("title", help="title of the post to act on, without the date or extension")
+        subparser.set_defaults(func=cmd)
+
+    args = parser.parse_args()
+    args.func(args)
