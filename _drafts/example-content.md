@@ -37,6 +37,10 @@ Even better you can set your own [id](#myid).
 >
 > This is the outer quote again.
 
+{% attribute "Sean Marshallsay" "https://sean1708.github.io" %}
+I've made a plugin which allows easy quoting of peeps.
+{% endattribute %}
+
 Code will be done with jekyll highlighting.
 
 {% highlight rust linenos %}
