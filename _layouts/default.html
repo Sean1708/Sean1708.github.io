@@ -1,43 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+layout: main
+---
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}</title>
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
-  <link rel="stylesheet" href="{{ site.baseurl }}/style.css">
-  {% if page.maths %}
-  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-  {% endif %}
-</head>
+<!-- however all other pages want to have these --!>
 
-<body>
-  <div class="container">
-    <header class="masthead">
-      <h1 class="masthead-title--small">
-        <a href="{{ site.baseurl }}/">{{ site.name }}</a>
-      </h1>
-    </header>
+<header class="masthead">
+    <h1 class="masthead-title--small">
+    <a href="{{ site.baseurl }}/">{{ site.name }}</a>
+    </h1>
+</header>
 
-    {{ content }}
+{{ content }}
 
-    <footer class="masthead">
-      <nav class="masthead-nav">
-        {% if page.previous %}
-        <a href="{{ page.previous.url }}">&#171; {{ page.previous.title }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        {% endif %}
+<footer class="masthead">
+    <nav class="masthead-nav">
+    {% if page.previous %}
+    <a href="{{ page.previous.url }}">&#171; {{ page.previous.title }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    {% endif %}
 
-        {% for nav in site.nav %}
-        <a href="{{ nav.href }}">{{ nav.name }}</a>
-        {% endfor %}
+    {% for nav in site.nav %}
+    <a href="{{ nav.href }}">{{ nav.name }}</a>
+    {% endfor %}
 
-        {% if page.next %}
-        &nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ page.next.url }}">{{ page.next.title }} &raquo;</a>
-        {% endif %}
-      </nav>
-    </footer>
-  </div>
-</body>
-
-</html>
+    {% if page.next %}
+    &nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ page.next.url }}">{{ page.next.title }} &raquo;</a>
+    {% endif %}
+    </nav>
+</footer>
